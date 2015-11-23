@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="ThemeHouse_ModerateReply" title="[⌂] Moderate Replies" version_string="1.0.1" version_id="1447261019" url="http://xf.themehouse.io/" install_callback_class="ThemeHouse_Install" install_callback_method="install" uninstall_callback_class="ThemeHouse_Install" uninstall_callback_method="uninstall">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="controller_pre_dispatch" execute_order="10" callback_class="ThemeHouse_Listener_ControllerPreDispatch" callback_method="controllerPreDispatch" active="1" hint="" description=""/>
+    <listener event_id="file_health_check" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_FileHealthCheck" callback_method="fileHealthCheck" active="1" hint="" description=""/>
+    <listener event_id="init_dependencies" execute_order="10" callback_class="ThemeHouse_Listener_InitDependencies" callback_method="initDependencies" active="1" hint="" description=""/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_LoadClass" callback_method="loadClassDataWriter" active="0" hint="XenForo_DataWriter_Discussion_Thread" description="XenForo_DataWriter_Discussion_Thread (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_LoadClass" callback_method="loadClassController" active="0" hint="XenForo_ControllerPublic_Thread" description="XenForo_ControllerPublic_Thread (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_LoadClass" callback_method="loadClassController" active="0" hint="XenForo_ControllerPublic_Forum" description="XenForo_ControllerPublic_Forum (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_LoadClass" callback_method="loadClassModel" active="0" hint="XenForo_Model_Post" description="XenForo_Model_Post (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_LoadClass" callback_method="loadClassModel" active="0" hint="XenForo_Model_Forum" description="XenForo_Model_Forum (For XenForo 1.2 and above)" compatibility_switch="1"/>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_LoadClass" callback_method="loadClassController" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+    <listener event_id="load_class_datawriter" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_LoadClass" callback_method="loadClassDataWriter" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+    <listener event_id="load_class_model" execute_order="10" callback_class="ThemeHouse_ModerateReply_Listener_LoadClass" callback_method="loadClassModel" active="1" hint="" description="(For XenForo 1.1 and below)" compatibility_switch="1"/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups>
+    <group group_id="th_moderateReplies" display_order="2000" debug_only="0"/>
+    <option option_id="th_moderateReplies_moderateMessage" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params/>
+      <sub_options/>
+      <relation group_id="th_moderateReplies" display_order="1"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions>
+      <permission permission_group_id="forum" permission_id="enableModerateReplies" permission_type="flag" default_value="unset" interface_group_id="forumModeratorPermissions" display_order="325"/>
+    </permissions>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="moderator_log_thread_disable_moderate_replies" version_id="1431361984" version_string="1.0.0"><![CDATA[Moderate replies disabled]]></phrase>
+    <phrase title="moderator_log_thread_enable_moderate_replies" version_id="1431361984" version_string="1.0.0"><![CDATA[Moderate replies enabled]]></phrase>
+    <phrase title="option_group_th_moderateReplies" version_id="1431365171" version_string="1.0.0"><![CDATA[Moderate Replies by ThemeHouse]]></phrase>
+    <phrase title="option_group_th_moderateReplies_description" version_id="1431365171" version_string="1.0.0"><![CDATA[Options for the Moderate Replies by ThemeHouse add-on.]]></phrase>
+    <phrase title="option_th_moderateReplies_moderateMessage" version_id="1431365171" version_string="1.0.0"><![CDATA[Replace 'Your message has been posted' message if message is moderated]]></phrase>
+    <phrase title="option_th_moderateReplies_moderateMessage_explain" version_id="1431365171" version_string="1.0.0"><![CDATA[This replaces the message that appears when posting a message from the full reply editor (i.e., not the quick reply editor) with a message that explains that the message has not been posted as it requires moderation.]]></phrase>
+    <phrase title="permission_forum_enableModerateReplies" version_id="1431361984" version_string="1.0.0"><![CDATA[Enable / disable moderate replies]]></phrase>
+    <phrase title="th_if_enabled_moderator_manually_approve_replies_posted_in_thread_moderatereplies" version_id="1431361984" version_string="1.0.0"><![CDATA[If enabled, a moderator will have to manually approve replies posted to this thread.]]></phrase>
+    <phrase title="th_moderate_moderatereplies" version_id="1431361984" version_string="1.0.0"><![CDATA[Moderate]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates/>
+  <public_template_modifications>
+    <modification template="footer" modification_key="th_copyrightNotice_moderateReplies" description="Copyright notice for Moderate Replies by ThemeHouse" execution_order="1" enabled="1" action="callback">
+      <find><![CDATA[/{xen:phrase (?:xenforo|extra)_copyright}/]]></find>
+      <replace><![CDATA[ThemeHouse_Listener_InitDependencies::copyrightNotice]]></replace>
+    </modification>
+    <modification template="footer" modification_key="th_copyrightNotice_moderateReply" description="Copyright notice for [⌂] Moderate Replies" execution_order="1" enabled="1" action="callback">
+      <find><![CDATA[/{xen:phrase (?:xenforo|extra)_copyright}/]]></find>
+      <replace><![CDATA[ThemeHouse_Listener_InitDependencies::copyrightNotice]]></replace>
+    </modification>
+    <modification template="thread_fields_status" modification_key="th_threadFieldsStatus_moderateReplies" description="Adds 'Moderate' checkbox." execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#</xen:contentcheck>#]]></find>
+      <replace><![CDATA[<xen:if is="{$canEnableDisableModerateReplies}">
+	<li>
+		<label for="ctrl_moderate_replies_th"><input type="checkbox" name="moderate_replies_th" value="1" id="ctrl_moderate_replies_th" {xen:checked {$thread.moderate_replies_th}} /> {xen:phrase th_moderate_moderatereplies}</label>
+		<input type="hidden" name="_set[moderate_replies_th]" value="1" />
+		<p class="hint">{xen:phrase th_if_enabled_moderator_manually_approve_replies_posted_in_thread_moderatereplies}</p>
+	</li>
+</xen:if>
+${0}]]></replace>
+    </modification>
+    <modification template="thread_view" modification_key="th_threadView_moderateReplies" description="Adds 'Moderate' checkbox." execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#(<form action="{xen:link threads/quick-update, \$thread}".*)(</xen:contentcheck>)#Us]]></find>
+      <replace><![CDATA[${1}
+<xen:if is="{$canEnableDisableModerateReplies}"> 
+	<li><label><input type="checkbox" name="moderate_replies_th" value="1" class="SubmitOnChange" {xen:checked $thread.moderate_replies_th} />
+		{xen:phrase th_moderate_moderatereplies}</label>
+		<input type="hidden" name="set[moderate_replies_th]" value="1" /></li></xen:if>
+${2}]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+  <bb_codes/>
+</addon>
